@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARCLOSE - Hip Hop Instrumentals</title>
+    <link rel="icon" type="image/png" href="MARCLOSE_LOGO_WEB.png">
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --bg-color: #000000;
+            --text-color: #f1f1f1;
+            --accent-color: #a855f7;
+            --card-bg: #111111;
+            --font-family: 'Montserrat', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- CABECERA (HEADER) CON LOGO CORREGIDO --- */
+        header {
+            text-align: center;
+            padding: 80px 20px 100px 20px;
+            border-bottom: 2px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+            background-color: #000000;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)), url('dark.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .main-logo-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            background-color: transparent;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .main-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.11);
+            display: block;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .artist-name {
+            font-size: 3rem;
+            margin: 10px 0 0 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .artist-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px;
+            margin-bottom: 30px;
+        }
+
+        .artist-title {
+            font-size: 1.2rem;
+            font-weight: 300;
+            background: linear-gradient(90deg, #ffffff 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .text-separator {
+            width: 1px;
+            height: 20px;
+            background-color: var(--text-color);
+            margin: 0 10px;
+            opacity: 0.5;
+        }
+
+        /* --- BOTONES Y REDES --- */
+        .header-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .contact-btn:hover {
+            background-color: #9333ea;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+        }
+
+        .contact-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(34, 34, 34, 0.8);
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #333333;
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+
+        /* --- CATÁLOGO DE CANCIONES --- */
+        .catalog {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .track-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .cover-image-container {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .track-card:hover .cover-image {
+            transform: scale(1.05);
+        }
+
+        .track-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .track-title {
+            font-size: 1.4rem;
+            margin: 0 0 5px 0;
+            text-align: center;
+        }
+
+        .track-genre {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #aaaaaa;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* --- NUEVO REPRODUCTOR PROFESIONAL --- */
+        .custom-player {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #181818;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #282828;
+        }
+
+        .player-main-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .play-btn {
+            background: var(--accent-color);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3);
+        }
+
+        .play-btn:hover {
+            background: #9333ea;
+            transform: scale(1.05);
+        }
+
+        .play-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: #ffffff;
+            margin-left: 2px; /* Centrado óptico del icono de play */
+        }
+
+        .play-btn.playing svg {
+            margin-left: 0;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .progress-bar {
+            background: #333333;
+            height: 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-filled {
+            background: var(--accent-color);
+            width: 0%;
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #888888;
+            font-weight: 500;
+        }
+
+        /* --- PIE DE PÁGINA (FOOTER) --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid #222222;
+            font-size: 0.9rem;
+            color: #666666;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* --- RESPONSIVIDAD --- */
+        @media (max-width: 768px) {
+            .artist-name { font-size: 2.2rem; }
+            .main-logo-container { width: 140px; height: 140px; }
+            .catalog { grid-template-columns: 1fr; }
+            .contact-btn { font-size: 0.8rem; padding: 12px 20px; }
+            header { background-attachment: scroll; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="main-logo-container">
+            <img src="LOGO%20MARCLOSE_2.png" alt="MARCLOSE Logo" class="main-logo">
+        </div>
+        <div class="hero-text">
+            <h1 class="artist-name">MARCLOSE</h1>
+            <div class="artist-title-container">
+                <p class="artist-title">HIP HOP INSTRUMENTALS</p>
+                <div class="text-separator"></div>
+                <p class="artist-title" style="color: var(--accent-color);">ORIGINAL BEATS</p>
+            </div>
+            
+            <div class="header-actions">
+                <a href="mailto:prod.bymarclose@gmail.com" class="contact-btn">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Solicitar Beats o Licencias
+                </a>
+                
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@MarcloseV2" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/marclosev2" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@marclosev2" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.83V7.75a6.34 6.34 0 1 0 6.34 6.34V8.45a8.27 8.27 0 0 0 4.77 1.51V6.51a4.84 4.84 0 0 1-1.00.18z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/marclosev2" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="catalog">
+
+
+
+        <!-- CANCIÓN 5 -->
+               <article class="track-card">
+                   <div class="cover-image-container">
+                       <img src="crusin.png" alt="Portada de Killer" class="cover-image">
+                   </div>
+                   <div class="track-details">
+                       <div>
+                           <h3 class="track-title">CRUSIN'</h3>
+                           <p class="track-genre">G-FUNK TYPE</p>
+                       </div>
+                       
+                       <div class="custom-player" data-src="crusin.mp3">
+                           <div class="player-main-row">
+                               <button class="play-btn" aria-label="Reproducir / Pausar">
+                                   <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                               </button>
+                               <div class="progress-container">
+                                   <div class="progress-bar">
+                                       <div class="progress-filled"></div>
+                                   </div>
+                                   <div class="time-info">
+                                       <span class="current-time">0:00</span>
+                                       <span class="duration">0:00</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </article>
+        <!-- CANCIÓN 4 -->
+               <article class="track-card">
+                   <div class="cover-image-container">
+                       <img src="cover_killer.png" alt="Portada de Killer" class="cover-image">
+                   </div>
+                   <div class="track-details">
+                       <div>
+                           <h3 class="track-title">KILLER</h3>
+                           <p class="track-genre">Boom Bap / Hip Hop</p>
+                       </div>
+                       
+                       <div class="custom-player" data-src="audio_killer.mp3">
+                           <div class="player-main-row">
+                               <button class="play-btn" aria-label="Reproducir / Pausar">
+                                   <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                               </button>
+                               <div class="progress-container">
+                                   <div class="progress-bar">
+                                       <div class="progress-filled"></div>
+                                   </div>
+                                   <div class="time-info">
+                                       <span class="current-time">0:00</span>
+                                       <span class="duration">0:00</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </article>
+        
+        <!-- CANCIÓN 1 -->
+        <article class="track-card">
+            <div class="cover-image-container">
+                <img src="cover_sinister.png" alt="Portada de Sinister" class="cover-image">
+            </div>
+            <div class="track-details">
+                <div>
+                    <h3 class="track-title">SINISTER</h3>
+                    <p class="track-genre">Instrumental Trap</p>
+                </div>
+                
+                <div class="custom-player" data-src="audio_sinister.mp3">
+                    <div class="player-main-row">
+                        <button class="play-btn" aria-label="Reproducir / Pausar">
+                            <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-filled"></div>
+                            </div>
+                            <div class="time-info">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- CANCIÓN 2 -->
+        <article class="track-card">
+            <div class="cover-image-container">
+                <img src="cover_psycho.png" alt="Portada de Psycho" class="cover-image">
+            </div>
+            <div class="track-details">
+                <div>
+                    <h3 class="track-title">PSYCHO</h3>
+                    <p class="track-genre">Dark Hip-Hop</p>
+                </div>
+                
+                <div class="custom-player" data-src="audio_psycho.mp3">
+                    <div class="player-main-row">
+                        <button class="play-btn" aria-label="Reproducir / Pausar">
+                            <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-filled"></div>
+                            </div>
+                            <div class="time-info">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- CANCIÓN 3 -->
+        <article class="track-card">
+            <div class="cover-image-container">
+                <img src="cover_eclipse.png" alt="Portada de Eclipse" class="cover-image">
+            </div>
+            <div class="track-details">
+                <div>
+                    <h3 class="track-title">ECLIPSE</h3>
+                    <p class="track-genre">Atmospheric Instrumental</p>
+                </div>
+                
+                <div class="custom-player" data-src="audio_eclipse.mp3">
+                    <div class="player-main-row">
+                        <button class="play-btn" aria-label="Reproducir / Pausar">
+                            <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-filled"></div>
+                            </div>
+                            <div class="time-info">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 MARCLOSE. Todos los derechos reservados.</p>
+        <p>Producido por MARCLOSE.</p>
+    </footer>
+
+    <!-- SCRIPT PARA EL FUNCIONAMIENTO DE LOS REPRODUCTORES -->
+    <script>
+        document.querySelectorAll('.custom-player').forEach(playerEl => {
+            const audioSrc = playerEl.getAttribute('data-src');
+            const audio = new Audio(audioSrc);
+            
+            const playBtn = playerEl.querySelector('.play-btn');
+            const playIcon = playBtn.querySelector('.play-icon');
+            const progressBar = playerEl.querySelector('.progress-bar');
+            const progressFilled = playerEl.querySelector('.progress-filled');
+            const currentTimeEl = playerEl.querySelector('.current-time');
+            const durationEl = playerEl.querySelector('.duration');
+
+            // Iconos SVG
+            const playSvg = '<path d="M8 5v14l11-7z"/>';
+            const pauseSvg = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+
+            // Formatear tiempo en MM:SS
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            audio.addEventListener('loadedmetadata', () => {
+                durationEl.textContent = formatTime(audio.duration);
+            });
+
+            // Control de Play/Pause
+            playBtn.addEventListener('click', () => {
+                // Pausar el resto de reproductores si hay otro sonando
+                document.querySelectorAll('.custom-player').forEach(otherPlayer => {
+                    if (otherPlayer !== playerEl) {
+                        const otherAudio = otherPlayer.audioInstance;
+                        if (otherAudio && !otherAudio.paused) {
+                            otherAudio.pause();
+                            otherPlayer.querySelector('.play-btn').classList.remove('playing');
+                            otherPlayer.querySelector('.play-icon').innerHTML = playSvg;
+                        }
+                    }
+                });
+
+                if (audio.paused) {
+                    audio.play();
+                    playBtn.classList.add('playing');
+                    playIcon.innerHTML = pauseSvg;
+                } else {
+                    audio.pause();
+                    playBtn.classList.remove('playing');
+                    playIcon.innerHTML = playSvg;
+                }
+            });
+
+            // Guardar instancia de audio asociada
+            playerEl.audioInstance = audio;
+
+            // Actualizar barra de progreso y tiempo
+            audio.addEventListener('timeupdate', () => {
+                if (audio.duration) {
+                    const percentage = (audio.currentTime / audio.duration) * 100;
+                    progressFilled.style.width = `${percentage}%`;
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                }
+            });
+
+            // Permitir hacer click en la barra para saltar a un punto de la canción
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const clickPosition = (e.clientX - rect.left) / rect.width;
+                if (audio.duration) {
+                    audio.currentTime = clickPosition * audio.duration;
+                }
+            });
+
+            // Al terminar la canción
+            audio.addEventListener('ended', () => {
+                playBtn.classList.remove('playing');
+                playIcon.innerHTML = playSvg;
+                progressFilled.style.width = '0%';
+                currentTimeEl.textContent = '0:00';
+            });
+        });
+    </script>
+</body>
+</html>
